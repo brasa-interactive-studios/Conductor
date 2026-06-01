@@ -78,8 +78,8 @@
 
 ```
 ❌ Claude Code CLI Integration
-   ├─ ✅ CLI installed at ~/.local/bin/claude
-   ├─ ✅ Authenticated (email: rafhaelxd@gmail.com)
+   ├─ ✅ CLI installed and authenticated
+   ├─ ✅ User logged in
    ├─ ❌ NO API CREDITS - "Credit balance is too low"
    ├─ ❌ Cloud route completely blocked
    └─ ACTION: Either:

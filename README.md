@@ -354,7 +354,7 @@ Conductor's chat interface provides **identical user experience** to GitHub Copi
 {
   "aiPlatform.serverUrl": "ws://127.0.0.1:8080/ws/extension",
   "aiPlatform.providerMode": "hybrid",
-  "aiPlatform.claudeBinPath": "/home/usuario/.local/bin/claude"
+  "aiPlatform.claudeBinPath": "~/.local/bin/claude"
 }
 ```
 

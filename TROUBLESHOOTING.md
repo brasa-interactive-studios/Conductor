@@ -64,7 +64,7 @@ Claude Code CLI requires API credits to run inference. Free trial has expired or
 
 2. **Add payment method:**
    - Go to [console.anthropic.com](https://console.anthropic.com)
-   - Sign in with: `rafhaelxd@gmail.com`
+   - Sign in with your Claude account email
    - Add credit card
    - Enable API usage
    - Wait 5-10 minutes for billing to activate
