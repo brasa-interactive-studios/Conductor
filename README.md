@@ -1,4 +1,7 @@
 # AI Core — Hybrid AI Engineering Platform
+<img width="915" height="820" alt="image" src="https://github.com/user-attachments/assets/9b8dd62f-31d5-4c39-a4f2-3c0c28acfb6a" />
+<img width="306" height="327" alt="image" src="https://github.com/user-attachments/assets/20f3f4de-8acd-4b3e-830d-51c2df510d22" />
+<img width="653" height="265" alt="image" src="https://github.com/user-attachments/assets/8697b7b1-35b5-4ee0-9fe9-ff99104f1076" />
 
 Local-first modular AI system for VSCodium/VSCode with server orchestration, web control panel, and integrated Claude Code CLI support.
 
