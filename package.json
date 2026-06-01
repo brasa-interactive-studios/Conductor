@@ -1,0 +1,30 @@
+{
+  "name": "vscode-ai-core",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "dev": "turbo run dev --parallel",
+    "setup:claude": "bash ./scripts/setup-claude-code.sh",
+    "start:all": "bash ./start-all.sh",
+    "stop:all": "bash ./stop-all.sh",
+    "dev:server": "pnpm --filter @apps/ai-server dev",
+    "dev:panel": "pnpm --filter @apps/control-panel dev",
+    "dev:extension": "pnpm --filter @apps/vscode-extension dev",
+    "build:all": "turbo run build",
+    "typecheck:all": "turbo run typecheck",
+    "test:all": "turbo run test"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "@types/node": "^22.10.2",
+    "vitest": "^2.1.9",
+    "turbo": "^2.0.14"
+  }
+}

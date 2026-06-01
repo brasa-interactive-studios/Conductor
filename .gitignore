@@ -1,0 +1,86 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+dist/
+
+# Runtime & Logs
+.logs/
+.run/
+*.log
+
+# Build artifacts
+apps/*/dist/
+packages/*/dist/
+*.d.ts
+out/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.code-workspace
+
+# Turbo/Build cache
+.turbo/
+.turbo/cache
+turbo.json.cache
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+claude-auth-token
+auth.json
+
+# Runtime data
+.data/
+.data/**/*.json
+common-config.json
+
+# Test artifacts
+coverage/
+.nyc_output/
+
+# Node debugger
+.inspector/
+node-inspector-*
+
+# Extension builds (if building extensions)
+*.vsix
+*.whl
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS files
+Thumbs.db
+.AppleDouble
+.LSOverride
+*.sublime-*
+
+# VSCodium specific
+.codium/
+.codium-extensions/
+
+# Local development
+.localrc
+.env.dev
+secrets.json
+
+# Ollama models (if cached locally)
+# ollama/models/
+# .ollama/
+
+# Control panel artifacts
+apps/control-panel/dist/
+apps/control-panel/out/
+
+# Claude CLI state
+~/.claude/
+.claude_cache/

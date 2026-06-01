@@ -1,0 +1,186 @@
+{
+  "name": "@apps/vscode-extension",
+  "displayName": "AI Platform Extension",
+  "description": "Lightweight VSCode bridge for AI server streaming and editor sync",
+  "version": "0.1.0",
+  "publisher": "local",
+  "private": true,
+  "main": "dist/extension.js",
+  "scripts": {
+    "build": "pnpm --filter @vscode-ai/shared build && tsc -p tsconfig.json",
+    "dev": "pnpm --filter @vscode-ai/shared build && tsc -p tsconfig.json --watch",
+    "watch": "pnpm --filter @vscode-ai/shared build && tsc -p tsconfig.json --watch",
+    "vscode:prepublish": "pnpm run build",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "echo \"No tests yet for @apps/vscode-extension\""
+  },
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "dependencies": {
+    "@vscode-ai/shared": "workspace:*",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.92.0",
+    "@types/ws": "^8.5.12",
+    "typescript": "^5.6.3"
+  },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "aiPlatform",
+          "title": "AI Platform",
+          "icon": "resources/ai-platform.svg"
+        }
+      ]
+    },
+    "views": {
+      "aiPlatform": [
+        {
+          "id": "aiPlatform.sidebar",
+          "name": "Workspace Assistant",
+          "icon": "resources/ai-platform.svg"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "aiPlatform.connect",
+          "when": "view == aiPlatform.sidebar",
+          "group": "navigation",
+          "icon": "resources/ai-platform.svg"
+        },
+        {
+          "command": "aiPlatform.ask",
+          "when": "view == aiPlatform.sidebar",
+          "group": "navigation",
+          "icon": "resources/ai-platform.svg"
+        },
+        {
+          "command": "aiPlatform.cancel",
+          "when": "view == aiPlatform.sidebar",
+          "group": "navigation",
+          "icon": "resources/ai-platform.svg"
+        },
+        {
+          "command": "aiPlatform.setProviderMode",
+          "when": "view == aiPlatform.sidebar",
+          "group": "navigation",
+          "icon": "resources/ai-platform.svg"
+        },
+        {
+          "command": "aiPlatform.startServer",
+          "when": "view == aiPlatform.sidebar",
+          "group": "navigation",
+          "icon": "resources/ai-platform.svg"
+        },
+        {
+          "command": "aiPlatform.claudeAuthLogin",
+          "when": "view == aiPlatform.sidebar",
+          "group": "navigation",
+          "icon": "resources/ai-platform.svg"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "aiPlatform.connect",
+        "title": "AI Platform: Connect Server",
+        "category": "AI Platform",
+        "icon": "resources/ai-platform.svg"
+      },
+      {
+        "command": "aiPlatform.ask",
+        "title": "AI Platform: Ask",
+        "category": "AI Platform",
+        "icon": "resources/ai-platform.svg"
+      },
+      {
+        "command": "aiPlatform.cancel",
+        "title": "AI Platform: Cancel Active Request",
+        "category": "AI Platform",
+        "icon": "resources/ai-platform.svg"
+      },
+      {
+        "command": "aiPlatform.setProviderMode",
+        "title": "AI Platform: Set Provider Mode",
+        "category": "AI Platform",
+        "icon": "resources/ai-platform.svg"
+      },
+      {
+        "command": "aiPlatform.startServer",
+        "title": "AI Platform: Start Server",
+        "category": "AI Platform",
+        "icon": "resources/ai-platform.svg"
+      },
+      {
+        "command": "aiPlatform.stopServer",
+        "title": "AI Platform: Stop Server",
+        "category": "AI Platform",
+        "icon": "resources/ai-platform.svg"
+      },
+      {
+        "command": "aiPlatform.claudeAuthLogin",
+        "title": "AI Platform: Claude Auth Login",
+        "category": "AI Platform",
+        "icon": "resources/ai-platform.svg"
+      },
+      {
+        "command": "aiPlatform.claudeAuthStatus",
+        "title": "AI Platform: Claude Auth Status",
+        "category": "AI Platform",
+        "icon": "resources/ai-platform.svg"
+      }
+    ],
+    "chatParticipants": [
+      {
+        "id": "aiPlatform.assistant",
+        "name": "ai-platform",
+        "fullName": "AI Platform",
+        "description": "Routes chat through AI Core context and tools",
+        "isSticky": true
+      }
+    ],
+    "configuration": {
+      "title": "AI Platform",
+      "properties": {
+        "aiPlatform.serverUrl": {
+          "type": "string",
+          "default": "ws://127.0.0.1:8080/ws/extension",
+          "description": "WebSocket endpoint used by the extension to communicate with ai-server."
+        },
+        "aiPlatform.autoConnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically connect to ai-server when VS Code starts."
+        },
+        "aiPlatform.providerMode": {
+          "type": "string",
+          "enum": [
+            "copilot-managed",
+            "local-ollama",
+            "hybrid"
+          ],
+          "default": "copilot-managed",
+          "description": "Provider mode used by AI Core orchestration for chat requests."
+        },
+        "aiPlatform.claudeBinPath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional absolute path to Claude CLI binary used by extension auth commands (for example /home/usuario/.local/bin/claude)."
+        }
+      }
+    }
+  },
+  "activationEvents": [
+    "onStartupFinished",
+    "onChatParticipant:aiPlatform.assistant"
+  ]
+}
