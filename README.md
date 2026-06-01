@@ -5,6 +5,8 @@
 
 Local-first modular AI system for VSCodium/VSCode with server orchestration, web control panel, and integrated Claude Code CLI support.
 
+⚠️ **IMPORTANT:** The Claude Code CLI account currently has **NO CREDITS**. See [TROUBLESHOOTING.md](TROUBLESHOOTING.md#-critical-issue-claude-credit-balance) for solutions (use local Ollama or hybrid mode).
+
 ## What is now included
 
 - Existing AI core modules (context, prompt, routing, generation, provider abstraction)
@@ -120,22 +122,26 @@ pnpm install
 
 If you want to use Claude Code as a cloud backend:
 
-```bash
-pnpm setup:claude
-```
+⚠️ **Current Status:** Claude CLI is already installed and authenticated, but the account has **NO CREDITS**.
 
-This will:
-- Install Claude Code CLI to `~/.local/bin/claude`
-- Prompt you to authenticate: `claude auth login --console`
-- Auto-detect and export the binary path to ai-server
+**Choose one option:**
 
-**Note:** Authentication code must be copied from the browser link and pasted into the terminal.
+A) **Use Local Ollama Instead (Recommended)** ✅
+   - Free, fast, completely local
+   - No API costs or internet needed
+   - Skip to step 4 and set `providerMode` to `local-ollama`
 
-To check auth status anytime:
+B) **Add Claude Credits** (if you want cloud Claude)
+   ```bash
+   # Check current account:
+   claude auth status
+   
+   # If loggedIn:true but subscriptionType:null, you need credits
+   # Visit https://console.anthropic.com and add payment method
+   # Then set providerMode to "copilot-managed" or "hybrid"
+   ```
 
-```bash
-claude auth status
-```
+For detailed troubleshooting, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
 
 ### 4) Start the full stack
 
@@ -369,33 +375,50 @@ export CLAUDE_CODE_TIMEOUT_MS="60000"
 claude auth login --console
 ```
 
-### Claude CLI: "Command not found"
+### Claude CLI: "Credit balance is too low"
 
-**Symptom:** "claude: command not found" or "Cannot find Claude executable"
+**Symptom:** `claude` command works but returns: "Credit balance is too low"
 
-**Solution:**
+**Root Cause:** Claude Code CLI account doesn't have active API credits. This happens when:
+- Free trial has expired
+- Subscription is inactive
+- No payment method on file
+- Credits were exhausted
 
-1. Install Claude Code CLI:
+**Solutions:**
+
+1. **Check your Claude account:**
    ```bash
-   pnpm setup:claude
+   claude auth status
    ```
+   Look at `subscriptionType` — if it's `null` or `free-expired`, you need credits.
 
-2. Verify installation:
-   ```bash
-   which claude
-   ```
+2. **Add Claude subscription (Recommended if you want Claude):**
+   - Visit [console.anthropic.com](https://console.anthropic.com)
+   - Add a payment method
+   - Enable API access
+   - Revert `providerMode` to `copilot-managed`
 
-3. If not found, manually install:
-   ```bash
-   pip install claude-code
-   # then verify:
-   claude --version
-   ```
+3. **Use Local Mode (Recommended for development):**
+   - Set `providerMode` to `local-ollama` or `hybrid`
+   - Conductor will use Ollama (free, local) instead
+   - No API costs, full privacy
+   - Slightly slower but fully functional
 
-4. Export the binary path manually:
-   ```bash
-   export CLAUDE_CODE_BIN=$(which claude)
-   ```
+**Current Status in Conductor:**
+```bash
+# Check what's available:
+$ CLAUDE_CODE_MODEL=sonnet echo "test" | claude -p
+Error: Credit balance is too low  ❌
+
+# But local models work:
+$ curl http://127.0.0.1:11434/api/generate -d '{"model":"qwen2.5-coder:14b", "prompt":"test"}' 
+[Streams response]  ✅
+```
+
+**Recommended:** Use **hybrid mode** (default) — Conductor will try Claude first, automatically fall back to Ollama if credits are exhausted.
+
+---
 
 ### Server won't start
 
