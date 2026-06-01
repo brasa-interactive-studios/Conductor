@@ -5,6 +5,8 @@
 
 Local-first modular AI system for VSCodium/VSCode with server orchestration, web control panel, and integrated Claude Code CLI support.
 
+**Chat Interface:** Same look & feel as GitHub Copilot — streams responses with markdown formatting, editor context awareness, and automatic fallback handling.
+
 ⚠️ **IMPORTANT:** The Claude Code CLI account currently has **NO CREDITS**. See [TROUBLESHOOTING.md](TROUBLESHOOTING.md#-critical-issue-claude-credit-balance) for solutions (use local Ollama or hybrid mode).
 
 ## What is now included
@@ -312,6 +314,25 @@ Claude Code CLI path is resolved in this order:
    - `/usr/local/bin/claude` (manual install)
 
 The `start-all.sh` script auto-detects and exports the path for child processes.
+
+## Comparison with GitHub Copilot
+
+Conductor's chat interface provides **identical user experience** to GitHub Copilot while offering more flexibility:
+
+| Feature | GitHub Copilot | Conductor |
+|---------|---|---|
+| **Chat Interface** | ✅ Markdown streaming | ✅ Markdown streaming |
+| **Editor Context** | ✅ Files, cursor, diagnostics | ✅ Files, cursor, diagnostics |
+| **Streaming Responses** | ✅ Token-by-token | ✅ Token-by-token |
+| **Code Formatting** | ✅ Syntax highlighting | ✅ VS Code rendering |
+| **Request Cancellation** | ✅ Yes | ✅ Yes |
+| **Error Recovery** | ✅ Yes | ✅ Automatic fallback to Ollama |
+| **Backend** | ✅ Claude only | ✅ Claude OR Ollama (flexible) |
+| **Privacy** | ❌ Cloud-only | ✅ Local-only option available |
+| **Cost** | ✅ $20/month | ✅ Free (local) or pay-as-you-go (cloud) |
+| **Offline Mode** | ❌ No | ✅ Yes (with Ollama) |
+
+**Bottom Line:** Same clean chat UI as Copilot, but you choose the backend (local Ollama, cloud Claude, or both with automatic fallback).
 
 ## Configuration
 
