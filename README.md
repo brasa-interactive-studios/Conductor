@@ -1,3 +1,6 @@
+#This projects have been stoped and now we are working in something more advanced without vscode and this bullshit tech from microsoft 
+Take a look here https://github.com/brasa-interactive-studios/brasa-ai-core-engine
+
 # AI Core — Hybrid AI Engineering Platform
 <img width="915" height="820" alt="image" src="https://github.com/user-attachments/assets/9b8dd62f-31d5-4c39-a4f2-3c0c28acfb6a" />
 <img width="306" height="327" alt="image" src="https://github.com/user-attachments/assets/20f3f4de-8acd-4b3e-830d-51c2df510d22" />
