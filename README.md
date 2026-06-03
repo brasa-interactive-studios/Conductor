@@ -1,4 +1,4 @@
-#This projects have been stoped and now we are working in something more advanced without vscode and this bullshit tech from microsoft 
+# This projects have been stoped and now we are working in something more advanced without vscode and this bullshit tech from microsoft 
 Take a look here https://github.com/brasa-interactive-studios/brasa-ai-core-engine
 
 # AI Core — Hybrid AI Engineering Platform
